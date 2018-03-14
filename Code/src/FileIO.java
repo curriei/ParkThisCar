@@ -4,61 +4,48 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util
 
 public class FileIO {
         
         
-        public static String[][] importCSV(String fileName) throws IOException{
-		
-                LinkedList<String[]> linkedList = new LinkedList<>();
-                String[][] result;
+	public static String[][] importCSV(String fileName) throws IOException{
+        LinkedList<String[]> linkedList = new LinkedList<>();
+        String[][] result;
             
 		File Annual_Parking_Study_Data = new File(fileName);		
 		
 		BufferedReader br;
 		FileReader fr;
-                String regex = ",";
+        String regex = ",";
 		
 		fr = new FileReader(Annual_Parking_Study_Data);
 		br = new BufferedReader(fr);
 
 		String Parking_Lot_Info_Line;
                         
-                br.readLine(); //deals with the title row
+        br.readLine(); //deals with the title row
 		while (( Parking_Lot_Info_Line = br.readLine()) != null) {
-                        String[] line = Parking_Lot_Info_Line.split(regex);
-                        linkedList.add(line);  
-                }			
-                result = linkedList.toArray(new String[linkedList.size()][]);
+			String[] line = Parking_Lot_Info_Line.split(regex);
+            linkedList.add(line);  
+        }			
+        result = linkedList.toArray(new String[linkedList.size()][]);
 		
-                return result;		
+        return result;		
 	}
-    
+      
+	//temporarily commented out while we figure out the stuff for working copy
+ /*   public static LinkedList<ParkingSpot> importList(String fileName) throws IOException{
+        String[][] file = importCSV(fileName);
         
+    }*/
         
-        public static LinkedList<ParkingSpot> importList(String fileName) throws IOException{
-                String[][] file = importCSV(fileName);
-                
-                
-                
-                
-                
-        }
-        
-    public static Graph importOldGraph(String fileName){
-    	String[][] file = importCSV(fileName);
-    	Graph graph = new Graph(Integer.parseInt(file[0][0]));
-    	
-    	
-    }
 	
 	public static Graph importGraph(String fileName) throws IOException{
 		String[][] file = importCSV(fileName); //reads csv file as a 2d array
 		BSTbag bg = new BSTbag();
 		LinkedList<Edge> lst = new LinkedList<>();
 		int numNodes = 0;
-		Stack edges = new Stack();
+		Stack<Edge> edges = new Stack<Edge>();
 		
 		for(int i = 1; i<file.length; i++){
 			String[] line = file[i];
