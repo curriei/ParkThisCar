@@ -5,11 +5,11 @@ import java.util.*;
 
 public class get_CSV_info {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		
 		File Annual_Parking_Study_Data = new File("src/Annual_Parking_Study_Data.csv");
-		//You will probably need to change the pathname a little bit but it should work the same.
-		
+
 		
 		BufferedReader br = null;
 		FileReader fr = null;
@@ -18,9 +18,14 @@ public class get_CSV_info {
 			
 			fr = new FileReader(Annual_Parking_Study_Data);
 			br = new BufferedReader(fr);
+			File STREET_PARKING = new File("src/STREET_PARKING.csv");
+			FileWriter fw = null;
+			fw = new FileWriter(STREET_PARKING);
+			BufferedWriter bw = null;
+			bw = new BufferedWriter(fw);
 
 			String Parking_Lot_Info_Line;
-
+		
 			while (( Parking_Lot_Info_Line = br.readLine()) != null) {
 			    
 			    String regex = ",";
@@ -30,37 +35,37 @@ public class get_CSV_info {
 			    	
 			    	Parking_Lot_Info_Line = Parking_Lot_Info_Line.replace(",,", ",");
 			    	Parking_Lot_Info_Line = Parking_Lot_Info_Line.replace(""+csv, "       ");
-			    	
 			    }
 			    
 			    
 				String[] Parking_Lot_Info_Line_2 = Parking_Lot_Info_Line.split("       ");
 				
-				System.out.println(Arrays.toString(Parking_Lot_Info_Line_2)); //This part is just to show that we get the information as line by line arrays.
-				
-//				int n = Array.getLength(Parking_Lot_Info_Line_2);
-				
-//				for (int i = 0; i < n; i++) {
+				int n = Array.getLength(Parking_Lot_Info_Line_2);
+				String str = "";
+				for (int i = 0; i < n; i++){
 					
-//					if (i == 0 | i == 6 | i == 7 | i == 8 | i == 9 | i == 10) {
+					if (i == 0 || i == 6 || i == 8 || i == 9 || i == 10) {
 						
-//						String Parking_Lot_Info_Line_3 = Parking_Lot_Info_Line_2[i];
+						str = str+Parking_Lot_Info_Line_2[i]+",";
 						
-//						System.out.println(Parking_Lot_Info_Line_3);
-						
-//					}
+					}
 					
-//				}
+				}
+				
+				System.out.println(str);
+				bw.write(str);
+				bw.newLine();
+				
 			}
 			
-			}catch (IOException e) {
+			bw.close();
+			
+		}catch (IOException e) {
 
-				e.printStackTrace();
-
+			e.printStackTrace();
+       
 		}
 		
-		
-		
 	}
-
+	
 }
