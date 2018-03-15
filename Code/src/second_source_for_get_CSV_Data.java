@@ -1,7 +1,6 @@
 import java.net.*;
 import java.io.*;
 import java.lang.reflect.*;
-import java.util.*;
 
 public class second_source_for_get_CSV_Data {
 	
@@ -35,7 +34,7 @@ public class second_source_for_get_CSV_Data {
 					
 					for (int i = 0; i < n; i++){
 						
-						if (i == 4 || i == 5 || i == 6 || i == 8 || i == 9 ||i == 10 || i == 12 || i == 13 || i == 14 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27) {
+						if (i == 4 || i == 5 || i == 6 || i == 8 || i == 9  || i == 11  || i == 13 || i == 14 || i == 22  || i == 23  || i == 24  || i == 25  || i == 26  || i == 27) {
 							
 							street = street+Street_Sign_Info_Line_2[i]+",";
 							
