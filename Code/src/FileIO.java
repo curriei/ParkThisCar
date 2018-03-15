@@ -34,10 +34,26 @@ public class FileIO {
 	}
       
 	//temporarily commented out while we figure out the stuff for working copy
- /*   public static LinkedList<ParkingSpot> importList(String fileName) throws IOException{
+    public static ParkingSpot[] importList(String fileName) throws IOException{
         String[][] file = importCSV(fileName);
+        ParkingSpot[] spots = new ParkingSpot[file.length-1];
+        for(String[] line : file){
+        	String txt = line[10];  //sign text
+        	String cat = line[11];  //sign category ( PTIML is a good temp example)
+        	char dir = line[14].charAt(0);   //sign facing direction
+        	String cusTxt = line[22];  //custom txt on the sign
+        	int stday = Integer.parseInt(line[23]);  //startday
+        	int endday = Integer.parseInt(line[24]);  //endday
+        	int sttme = Integer.parseInt(line[25]);  //starttime
+        	int endtme = Integer.parseInt(line[26]);  //endtime
+        	Double lat = Double.parseDouble(line[27].substring(1));  //latlong coordinates
+        	Double longi = Double.parseDouble(line[28].
+        			substring(0, line[28].length()-1));
+        	ParkingSpot spot = new ParkingSpot(txt,cat,dir,
+        			cusTxt,stday,endday,sttme,endtme,lat,longi);
+        }
         
-    }*/
+    }
         
 	
 	public static Graph importGraph(String fileName) throws IOException{

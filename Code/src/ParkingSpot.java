@@ -60,81 +60,81 @@ public class ParkingSpot {
 	Return "Z" - End Day
 	*/
 
-	public class Signs{
-
 		//Constructor for Sign, which will treat each row of Data as one object)//
 		//Sign - object. [ x ] - Column number of relevant info//
 
-		String[] Sign = null;
+	String[] Sign;
+	double lat;
+	double longi;
+	char direction;
+	
 		
-		public void SignInfo(){
-			System.out.println("Info on the board = " + Sign[10]);
-		}
+	public void SignInfo(){
+		System.out.println("Info on the board = " + Sign[10]);
+	}
+	public void LatAndLong(){
+		System.out.println("Lat and Long = (" + Sign[27] + ") ");
+	}
 
-		public void LatAndLong(){
-			System.out.println("Lat and Long = (" + Sign[27] + ") ");
+	public void StartDay() {
+		if (Sign[23] == "1"){
+			System.out.println("Sun");
 		}
-
-		public void StartDay() {
-			if (Sign[23] == "1"){
-				System.out.println("Sun");
-			}
-			if (Sign[23] == "2"){
+		if (Sign[23] == "2"){
 				System.out.println("Mon");
-			}
-			if (Sign[23] == "3"){
-				System.out.println("Tue");
-			}
-			if (Sign[23] == "4"){
-				System.out.println("Wed");
-			}
-			if (Sign[23] == "5"){
-				System.out.println("Thu");
-			}
-			if (Sign[23] == "6"){
-				System.out.println("Fri");
-			}
-			if (Sign[23] == "7"){
-				System.out.println("Sat");
-			}
 		}
-		
-		public void EndDay(){
-				if (Sign[24] == "1"){
-					System.out.println("Sun");
-				}
-				if (Sign[24] == "2"){
-					System.out.println("Mon");
-				}
-				if (Sign[24] == "3"){
-					System.out.println("Tue");
-				}
-				if (Sign[24] == "4"){
-					System.out.println("Wed");
-				}
-				if (Sign[24] == "5"){
-					System.out.println("Thu");
-				}
-				if (Sign[24] == "6"){
-					System.out.println("Fri");
-				}
-				if (Sign[24] == "7"){
-					System.out.println("Sat");
-				}
+		if (Sign[23] == "3"){
+			System.out.println("Tue");			}
+		if (Sign[23] == "4"){
+			System.out.println("Wed");
 		}
-		
-		public void StartHours(){
-			System.out.println("Start Time of Regulations" + Sign[25]);
+		if (Sign[23] == "5"){
+			System.out.println("Thu");
 		}
-		
-		public void EndHours(){
-			System.out.println("End Time of Regulations" + Sign[26]);
+		if (Sign[23] == "6"){
+			System.out.println("Fri");
 		}
+		if (Sign[23] == "7"){
+			System.out.println("Sat");
+		}
+	}
+	
+	public void EndDay(){
+		if (Sign[24] == "1"){
+			System.out.println("Sun");
+		}
+		if (Sign[24] == "2"){
+			System.out.println("Mon");
+		}
+		if (Sign[24] == "3"){
+			System.out.println("Tue");
+		}
+		if (Sign[24] == "4"){
+			System.out.println("Wed");
+		}
+		if (Sign[24] == "5"){
+			System.out.println("Thu");
+		}
+		if (Sign[24] == "6"){
+			System.out.println("Fri");
+		}
+		if (Sign[24] == "7"){
+			System.out.println("Sat");
+		}
+	}
 		
-		public void Category(){
-			if (Sign[11] == "P1H"){
-				System.out.println("1 HOUR PARKING OR MORE");
-			}
+	public void StartHours(){
+		System.out.println("Start Time of Regulations" + Sign[25]);
+	}
+		
+	public void EndHours(){
+		System.out.println("End Time of Regulations" + Sign[26]);
+	}
+		
+	public void Category(){
+		if (Sign[11] == "P1H"){
+			System.out.println("1 HOUR PARKING OR MORE");
+		}
 			if (Sign[11] == "PBLO"){
 				System.out.println("BUS LAYOVER");
 			}
