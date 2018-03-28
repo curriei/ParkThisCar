@@ -18,8 +18,8 @@ import java.lang.Math; // need this for mathematical functions such as power and
 	 */ 
 public class Coordinate {
 	
-	public double lat;
-	public double longit; //cannot call this long as that is a Java term
+	private Double lat;
+	private Double longit; //cannot call this long as that is a Java term
 	
 	
 	/**
@@ -40,7 +40,7 @@ public class Coordinate {
 	 * @param lat - represents the numerical latitude value 
 	 * @return the latitude value for Coordinate
 	 */ 
-	public double getLat() {
+	public Double getLat() {
 		return this.lat;
 	}
 	/**
@@ -48,7 +48,7 @@ public class Coordinate {
 	 * @param lat - represents the numerical longitude value 
 	 * @return the longitude value for Coordinate
 	 */	
-	public double getLongit() {
+	public Double getLongit() {
 		return this.longit;
 	}
 	
@@ -58,7 +58,7 @@ public class Coordinate {
 	 * @param 
 	 * @return the longitude value for Coordinate
 	 */		
-	public static double dist(Coordinate P1, Coordinate P2) {
+	public double dist(Coordinate P1) {
 		
 		double dist;
 		double x1;
@@ -67,20 +67,23 @@ public class Coordinate {
 		double y2;
 		
 		x1 = P1.getLat();
-		x2 = P2.getLat();
+		x2 = this.lat;
 		y1 = P1.getLongit();
-		y2 = P2.getLongit();
+		y2 = this.longit;
 
 		
 		dist = Math.hypot(x1-x2, y1-y2);
 		
 		return dist;
 	}
+	public String toString(){
+		return "("+lat+","+longit+")";
+	}
 	
 	
 	//Currently using the main function to test the various methods of this class
 	//Testing getLat(), getLongit() and dist() with instances of the class Coordinate, P1, P2
-
+/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -116,6 +119,6 @@ public class Coordinate {
 			System.out.print("Test dist() failed\n");
 			
 		}
-	}
-		
+	}*/
+}		
 	

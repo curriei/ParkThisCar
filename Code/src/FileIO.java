@@ -16,7 +16,7 @@ public class FileIO {
 		
 		BufferedReader br;
 		FileReader fr;
-        String regex = ",";
+        String regex = "\t";
 		
 		fr = new FileReader(Annual_Parking_Study_Data);
 		br = new BufferedReader(fr);
@@ -36,22 +36,27 @@ public class FileIO {
 	//temporarily commented out while we figure out the stuff for working copy
     public static ParkingSpot[] importList(String fileName) throws IOException{
         String[][] file = importCSV(fileName);
-        ParkingSpot[] spots = new ParkingSpot[file.length-1];
+        ParkingSpot[] spots = new ParkingSpot[file.length];
+        int i = 0;
         for(String[] line : file){
         	String txt = line[10];  //sign text
         	String cat = line[11];  //sign category ( PTIML is a good temp example)
-        	char dir = line[14].charAt(0);   //sign facing direction
-        	String cusTxt = line[22];  //custom txt on the sign
-        	int stday = Integer.parseInt(line[23]);  //startday
-        	int endday = Integer.parseInt(line[24]);  //endday
-        	int sttme = Integer.parseInt(line[25]);  //starttime
-        	int endtme = Integer.parseInt(line[26]);  //endtime
-        	Double lat = Double.parseDouble(line[27].substring(1));  //latlong coordinates
-        	Double longi = Double.parseDouble(line[28].
-        			substring(0, line[28].length()-1));
-        	ParkingSpot spot = new ParkingSpot(txt,cat,dir,
-        			cusTxt,stday,endday,sttme,endtme,lat,longi);
+        	char dir = line[12].charAt(0);   //sign facing direction
+        	String cusTxt = line[19];  //custom txt on the sign
+        	int stday = (line[20].equals("") ? 1 : Integer.parseInt(line[20]));  //startday
+        	int endday = (line[21].equals("") ? 7 : Integer.parseInt(line[21]));  //endday
+        	int sttme = (line[22].equals("") ? 0 : Integer.parseInt(line[22]));  //starttime
+        	int endtme = line[23].equals("") ? 2359 : Integer.parseInt(line[23]);  //endtime
+        	String[] latLong = line[24].split(",");
+        	Double lat = Double.parseDouble(latLong[0].substring(2,latLong[0].length()));  //latlong coordinates
+        	Double longi = Double.parseDouble(latLong[1].substring(0, latLong[1].length()-2));
+        	Coordinate coord = new Coordinate(lat,longi); 
+        	ParkingSpot spot = new ParkingSpot(txt,cat,cusTxt,
+        			dir,stday,endday,sttme,endtme,coord);
+        	spots[i] = spot;
+        	i++;
         }
+        return spots;
         
     }
         
@@ -62,9 +67,11 @@ public class FileIO {
 		LinkedList<Edge> lst = new LinkedList<>();
 		int numNodes = 0;
 		Stack<Edge> edges = new Stack<Edge>();
-		
 		for(int i = 1; i<file.length; i++){
 			String[] line = file[i];
+			for(String item :line)
+				System.out.print(item+ "; ");
+			System.out.println();
 			int streetType = Integer.parseInt(line[6]);
 			if(streetType < 9){
 				int from = Integer.parseInt(line[0]);  //from intersection
@@ -85,8 +92,8 @@ public class FileIO {
 				Double addressTo = Math.max(toAddress1, toAddress2);
 				Double addressFrom = minAddressFrom == 0 ? maxAddressFrom : minAddressFrom;
 				
-				String addTo = addressTo.toString()+stName;
-				String addFrom = addressFrom.toString()+stName;
+				String addTo = addressTo.toString()+" "+stName;
+				String addFrom = addressFrom.toString()+" "+stName;
 				
 				int toNode, fromNode;
 				if(!bg.contains(addTo)){

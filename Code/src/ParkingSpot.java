@@ -63,12 +63,50 @@ public class ParkingSpot {
 		//Constructor for Sign, which will treat each row of Data as one object)//
 		//Sign - object. [ x ] - Column number of relevant info//
 
-	String[] Sign;
-	double lat;
-	double longi;
-	char direction;
+	private String txt;
+	private String cat;
+	private String custxt;
+	private char dir;
+	private int stday;
+	private int endday;
+	private int sttme;
+	private int endtme;
+	private Coordinate coord;
+	private Double distToCoord;
 	
-		
+	
+	public ParkingSpot(String txt, String cat, String custxt, char dir,
+			int stday,int endday, int sttme, int endtme, Coordinate coord){
+		this.txt = txt;
+		this.cat = cat;
+		this.dir = dir;
+		this.stday = stday;
+		this.endday = endday;
+		this.sttme = sttme;
+		this.endtme = endtme;
+		this.coord = coord;	
+	}
+	
+	
+	public Double getDist(Coordinate coord){
+		this.distToCoord = coord.dist(this.coord);
+		return this.distToCoord;
+	}
+	public Double getDistToCoord(){
+		return this.distToCoord;
+	}
+	
+	//assumes getDist has already been called
+	public int compareTo(ParkingSpot p){
+		return this.distToCoord.compareTo(p.getDistToCoord());
+	}
+	
+	public String toString(){
+		return "(" + coord.getLat().toString()+","+coord.getLongit().toString()+")";
+	}
+	/*
+	
+	
 	public void SignInfo(){
 		System.out.println("Info on the board = " + Sign[10]);
 	}
@@ -194,5 +232,5 @@ public class ParkingSpot {
 			}
 		}
 	
-	}
+	}*/
 }
