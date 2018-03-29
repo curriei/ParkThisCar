@@ -30,15 +30,15 @@ public class BSTbag<Value> {
 		root.red = false;
 	}
 	private Node add(Node x, Comparable v, Value intersectionNum){
-		if(x == null) return new Node(v,intersectionNum,1,true);
+		if(x == null) return new Node(v,intersectionNum,1,true); 
 		int cmp = v.compareTo(x.val);
 		if (cmp < 0) x.left = add(x.left, v,intersectionNum);
 		else if (cmp > 0) x.right = add(x.right, v,intersectionNum);
-		
-		if (isRed(x.right) && !isRed(x.left)) x = rotateLeft(x);
-		if (isRed(x.left) && isRed(x.left.left)) x = rotateRight(x);
-		if (isRed(x.left) && isRed(x.right)) flipColours(x);
-		
+		if(x.right!=null && x.left!=null) {
+			if (isRed(x.right) && !isRed(x.left)) x = rotateLeft(x);
+			if (isRed(x.left) && isRed(x.left.left)) x = rotateRight(x);
+			if (isRed(x.left) && isRed(x.right)) flipColours(x);
+		}
 		x.sz = size(x.left) + size(x.right) + 1;
 		return x;
 	}
@@ -85,6 +85,7 @@ public class BSTbag<Value> {
 	}
 	
 	private Boolean contains (Comparable v, Node root){
+		if(root == null) return false;
 		if(v.equals(root.val)) return true;
 		if(less(v,root.val) && root.left != null){
 			return contains(v,root.left);
@@ -125,6 +126,8 @@ public class BSTbag<Value> {
 		return a.compareTo(b) < 0;
 	}
 	private Boolean isRed(Node n){
-		return n.red;
+		if(n!=null)
+			return n.red;
+		return false;
 	}
 }

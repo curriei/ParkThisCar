@@ -108,10 +108,11 @@ public class FileIO {
 				else fromNode = (int) bg.get(addFrom);
 				Edge edge = new Edge(toNode, fromNode,stWeight);
 				edges.push(edge);
+				System.out.println("we made one");
 			}
 		}
 		Graph graph = new Graph(numNodes);
-		for(int i = 0; i < numNodes; i++){
+		while(!edges.isEmpty()){
 			graph.addEdge((Edge) edges.pop());
 		}
 		return graph;
