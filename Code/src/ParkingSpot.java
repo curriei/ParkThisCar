@@ -63,7 +63,7 @@ public class ParkingSpot {
 		//Constructor for Sign, which will treat each row of Data as one object)//
 		//Sign - object. [ x ] - Column number of relevant info//
 
-	private String txt;
+	//private String txt;
 	private String cat;
 	private String custxt;
 	private char dir;
@@ -75,9 +75,9 @@ public class ParkingSpot {
 	private Double distToCoord;
 	
 	
-	public ParkingSpot(String txt, String cat, String custxt, char dir,
+	public ParkingSpot(/*String txt, */String cat, char dir,
 			int stday,int endday, int sttme, int endtme, Coordinate coord){
-		this.txt = txt;
+		//this.txt = txt;
 		this.cat = cat;
 		this.dir = dir;
 		this.stday = stday;

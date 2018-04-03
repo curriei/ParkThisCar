@@ -39,22 +39,26 @@ public class FileIO {
         ParkingSpot[] spots = new ParkingSpot[file.length];
         int i = 0;
         for(String[] line : file){
-        	String txt = line[10];  //sign text
-        	String cat = line[11];  //sign category ( PTIML is a good temp example)
-        	char dir = line[12].charAt(0);   //sign facing direction
-        	String cusTxt = line[19];  //custom txt on the sign
-        	int stday = (line[20].equals("") ? 1 : Integer.parseInt(line[20]));  //startday
-        	int endday = (line[21].equals("") ? 7 : Integer.parseInt(line[21]));  //endday
-        	int sttme = (line[22].equals("") ? 0 : Integer.parseInt(line[22]));  //starttime
-        	int endtme = line[23].equals("") ? 2359 : Integer.parseInt(line[23]);  //endtime
-        	String[] latLong = line[24].split(",");
+        	if(line.length > 21){
+        		
+        	//String txt = line[10];  //sign text
+        	String cat = line[10];  //sign category ( PTIML is a good temp example)
+        	char dir = line[11].charAt(0);   //sign facing direction
+        	//String txt = line[18];  //custom txt on the sign
+        	int stday = (line[17].equals("") ? 1 : Integer.parseInt(line[17]));  //startday
+        	int endday = (line[18].equals("") ? 7 : Integer.parseInt(line[18]));  //endday
+        	int sttme = (line[19].equals("") ? 0 : Integer.parseInt(line[19]));  //starttime
+        	int endtme = line[20].equals("") ? 2359 : Integer.parseInt(line[20]);  //endtime
+        	
+        	String[] latLong = line[21].split(",");
         	Double lat = Double.parseDouble(latLong[0].substring(2,latLong[0].length()));  //latlong coordinates
         	Double longi = Double.parseDouble(latLong[1].substring(0, latLong[1].length()-2));
         	Coordinate coord = new Coordinate(lat,longi); 
-        	ParkingSpot spot = new ParkingSpot(txt,cat,cusTxt,
+        	ParkingSpot spot = new ParkingSpot(cat,
         			dir,stday,endday,sttme,endtme,coord);
         	spots[i] = spot;
         	i++;
+        	}
         }
         return spots;
         
