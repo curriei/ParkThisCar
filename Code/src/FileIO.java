@@ -72,19 +72,29 @@ public class FileIO {
 		LinkedList<DirectedEdge> lst = new LinkedList<>();
 		int numNodes = 0;
 		Stack<DirectedEdge> edges = new Stack<DirectedEdge>();
+		String[] line;
+		int from;
+		int to;
+		Double speed;
+		String[] fromCoord;
+		String[] toCoord;
+		Coordinate fromCo;
+		Coordinate toCo;
+		Double stWeight;
+		int toNode, fromNode;
+		DirectedEdge edge;
 		for(int i = 1; i<file.length; i++){
-			String[] line = file[i];
-			int from = Integer.parseInt(line[0]);
-			int to = Integer.parseInt(line[1]);
-			Double speed = Integer.parseInt(line[2]) == 4 ? 5280. : 3080.;
-			String[] fromCoord = line[3].substring(1,line[3].length()-1).split(",");
-			String[] toCoord = line[4].substring(1,line[4].length()-1).split(",");
-			Coordinate fromCo = new Coordinate(Double.parseDouble(fromCoord[0]),
+			line = file[i];
+			from = Integer.parseInt(line[0]);
+			to = Integer.parseInt(line[1]);
+			speed = Integer.parseInt(line[2]) == 4 ? 5280. : 3080.;
+			fromCoord = line[3].substring(1,line[3].length()-1).split(",");
+			toCoord = line[4].substring(1,line[4].length()-1).split(",");
+			fromCo = new Coordinate(Double.parseDouble(fromCoord[0]),
 					Double.parseDouble(fromCoord[1]));
-			Coordinate toCo = new Coordinate(Double.parseDouble(toCoord[0]),
+			toCo = new Coordinate(Double.parseDouble(toCoord[0]),
 					Double.parseDouble(toCoord[1]));
-			Double stWeight = fromCo.dist(toCo)/speed;
-			int toNode, fromNode;
+			stWeight = fromCo.dist(toCo)/speed;
 			if(!bg.contains(fromCo)){
 				bg.put(fromCo,numNodes);
 				coordBg[numNodes] = fromCo;
@@ -98,14 +108,14 @@ public class FileIO {
 			}
 			else toNode = bg.get(toCo);
 						
-			DirectedEdge edge = new DirectedEdge(toNode, fromNode,stWeight);
+			edge = new DirectedEdge(toNode, fromNode,stWeight);
 			edges.push(edge);
 			System.out.println(numNodes);
 		}
-		System.out.println(numNodes);
 		EdgeWeightedDigraph graph = new EdgeWeightedDigraph(numNodes);
+		DirectedEdge e;
 		while(!edges.isEmpty()){
-			DirectedEdge e = edges.pop();
+			e = edges.pop();
 			graph.addEdge(e,coordBg[e.from()],coordBg[e.to()]);
 		}
 		return graph;
