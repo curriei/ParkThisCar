@@ -27,7 +27,7 @@ public class HashST<Key, Value> {
 	
 	private void resize(int capacity){
 		assert capacity >= N;
-		Key[] tempk = (Key[]) new Comparable[capacity];
+		Key[] tempk = (Key[]) new Object[capacity];
 		Value[] tempv = (Value[]) new Object[capacity];
 		for (int i = 0; i < N; i++){
 			tempk[i] = keys[i];
@@ -35,6 +35,7 @@ public class HashST<Key, Value> {
 		}
 		vals = tempv;
 		keys = tempk;
+		
 	}
 	
 	/**

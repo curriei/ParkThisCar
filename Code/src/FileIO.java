@@ -67,19 +67,18 @@ public class FileIO {
 	
 	public static EdgeWeightedDigraph importGraph(String fileName) throws IOException{
 		String[][] file = importCSV(fileName); //reads csv file as a 2d array
-		HashST<Coordinate, Integer> bg = new HashST<>(file.length);
+		HashST<Coordinate, Integer> bg = new HashST<>(file.length*2);
 		Coordinate[] coordBg = new Coordinate[file.length];
 		LinkedList<DirectedEdge> lst = new LinkedList<>();
 		int numNodes = 0;
 		Stack<DirectedEdge> edges = new Stack<DirectedEdge>();
 		for(int i = 1; i<file.length; i++){
 			String[] line = file[i];
-//<<<<<<< HEAD
 			int from = Integer.parseInt(line[0]);
 			int to = Integer.parseInt(line[1]);
 			Double speed = Integer.parseInt(line[2]) == 4 ? 5280. : 3080.;
-			String[] fromCoord = line[3].split(",");
-			String[] toCoord = line[4].split(",");
+			String[] fromCoord = line[3].substring(1,line[3].length()-1).split(",");
+			String[] toCoord = line[4].substring(1,line[4].length()-1).split(",");
 			Coordinate fromCo = new Coordinate(Double.parseDouble(fromCoord[0]),
 					Double.parseDouble(fromCoord[1]));
 			Coordinate toCo = new Coordinate(Double.parseDouble(toCoord[0]),
