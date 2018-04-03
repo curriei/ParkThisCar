@@ -9,7 +9,7 @@ public class EdgeWeightedDigraph {
 	private HashST<Coordinate, Integer> ints;
 
 	public EdgeWeightedDigraph(int v) {
-		this.V = 0;
+		this.V = v;
 		this.E = 0;
 		this.coords = new Coordinate[v];
 		this.ints = new HashST<>(v);

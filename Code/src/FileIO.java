@@ -68,7 +68,7 @@ public class FileIO {
 	public static EdgeWeightedDigraph importGraph(String fileName) throws IOException{
 		String[][] file = importCSV(fileName); //reads csv file as a 2d array
 		HashST<Coordinate, Integer> bg = new HashST<>(file.length*2);
-		Coordinate[] coordBg = new Coordinate[file.length];
+		Coordinate[] coordBg = new Coordinate[file.length*2];
 		LinkedList<DirectedEdge> lst = new LinkedList<>();
 		int numNodes = 0;
 		Stack<DirectedEdge> edges = new Stack<DirectedEdge>();
@@ -87,19 +87,22 @@ public class FileIO {
 			int toNode, fromNode;
 			if(!bg.contains(fromCo)){
 				bg.put(fromCo,numNodes);
+				coordBg[numNodes] = fromCo;
 				fromNode = numNodes++;
 			}
 			else fromNode = bg.get(fromCo);
 			if(!bg.contains(toCo)){
 				bg.put(toCo,  numNodes);
+				coordBg[numNodes] = toCo;
 				toNode = numNodes++;
 			}
 			else toNode = bg.get(toCo);
 						
 			DirectedEdge edge = new DirectedEdge(toNode, fromNode,stWeight);
 			edges.push(edge);
+			System.out.println(numNodes);
 		}
-		
+		System.out.println(numNodes);
 		EdgeWeightedDigraph graph = new EdgeWeightedDigraph(numNodes);
 		while(!edges.isEmpty()){
 			DirectedEdge e = edges.pop();

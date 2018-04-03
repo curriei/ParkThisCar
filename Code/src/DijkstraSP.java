@@ -9,7 +9,8 @@ public class DijkstraSP {
 		pq= new IndexMinPQ<Double>(G.V());
 		for(int v = 0; v < G.V(); v++)
 			distTo[v] = Double.POSITIVE_INFINITY;
-		distTo[s] = 0.0;pq.insert(s, 0.0);
+		distTo[s] = 0.0;
+		pq.insert(s, 0.0);
 		while(!pq.isEmpty())relax(G, pq.delMin());
 	}
 	
