@@ -20,6 +20,7 @@ public class Coordinate {
 	
 	private Double lat;
 	private Double longit; //cannot call this long as that is a Java term
+	private Double tol = 0.0001;
 	
 	
 	/**
@@ -42,6 +43,12 @@ public class Coordinate {
 	 */ 
 	public Double getLat() {
 		return this.lat;
+	}
+	public boolean equals(Coordinate that){
+		if (Math.abs(this.lat - that.getLat()) < tol && 
+				Math.abs(this.longit - that.getLongit()) < tol)
+			return true;
+		return false;
 	}
 	/**
 	 * Accessor for longitude value for Coordinate

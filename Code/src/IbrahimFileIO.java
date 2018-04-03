@@ -9,7 +9,10 @@ public class IbrahimFileIO {
 	String[][] file = FileIO.importCSV("Street_Network_Database.txt");
 	PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter
 			("Street_Network_Database_new.txt")));
+	
 	pw.print(file[0][0]+"\t"+file[0][1]+"\t"+file[0][6]+"\t"+"FROM\tTO\n");
+	
+	
 	for(int i = 1; i<file.length; i++){
 		String[] line = file[i];
 		int streetType = Integer.parseInt(line[6]);

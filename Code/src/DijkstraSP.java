@@ -1,11 +1,11 @@
 public class DijkstraSP {
 	private DirectedEdge[] edgeTo;
-	private double[] distTo;
+	private Double[] distTo;
 	private IndexMinPQ<Double> pq;
 	
 	public DijkstraSP(EdgeWeightedDigraph G, int s){
 		edgeTo= new DirectedEdge[G.V()];
-		distTo= new double[G.V()];
+		distTo= new Double[G.V()];
 		pq= new IndexMinPQ<Double>(G.V());
 		for(int v = 0; v < G.V(); v++)
 			distTo[v] = Double.POSITIVE_INFINITY;
@@ -24,5 +24,11 @@ public class DijkstraSP {
 				else pq.insert(w, distTo[w]);
 			}
 		}
+	}
+	public double getDist(int w){
+		return distTo[w];
+	}
+	public Double[] dists(){
+		return distTo;
 	}
 }

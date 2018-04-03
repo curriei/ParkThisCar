@@ -86,7 +86,12 @@ public class ParkingSpot {
 		this.endtme = endtme;
 		this.coord = coord;	
 	}
-	
+	public int sttme(){
+		return sttme;
+	}
+	public int endtme(){
+		return endtme;
+	}
 	
 	public Double getDist(Coordinate coord){
 		this.distToCoord = coord.dist(this.coord);
@@ -104,6 +109,13 @@ public class ParkingSpot {
 	public String toString(){
 		return "(" + coord.getLat().toString()+","+coord.getLongit().toString()+")";
 	}
+	public boolean freeToday(int today){
+		return stday <= today && endday >= today;
+	}
+	public Coordinate loc(){
+		return coord;
+	}
+	
 	/*
 	
 	

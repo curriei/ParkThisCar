@@ -1,22 +1,25 @@
 
 
 public class QuickSort {
-	public static void sort(ParkingSpot[] p, int lo, int hi){
+	public static void sort(Double[] p, ParkingSpot[] q, int lo, int hi){
 		if (hi<=lo) return;
 		int lt = lo, i=lo+1, gt = hi;
-		ParkingSpot v = p[lo];
+		Double v = p[lo];
 		while(i<=gt){
 			int cmp = p[i].compareTo(v);
-			if(cmp<0) exch(p,lt++,i++);
-			else if (cmp>0) exch(p,i,gt--);
+			if(cmp<0) exch(p,q,lt++,i++);
+			else if (cmp>0) exch(p,q,i,gt--);
 			else i++;
 		}
-		sort(p,lo,lt-1);
-		sort(p,gt+1,hi);
+		sort(p,q,lo,lt-1);
+		sort(p,q,gt+1,hi);
 	}
-	private static void exch(ParkingSpot a[], int i, int j){
-		ParkingSpot temp = a[i];
+	private static void exch(Double[] a,ParkingSpot[] q, int i, int j){
+		Double temp1 = a[i];
+		ParkingSpot temp2 = q[i];
 		a[i] = a[j];
-		a[j] = temp;
+		q[i] = q[j];
+		a[j] = temp1;
+		q[j] = temp2;
 	}
 }

@@ -70,6 +70,7 @@ public class FileIO {
 		Stack<DirectedEdge> edges = new Stack<DirectedEdge>();
 		for(int i = 1; i<file.length; i++){
 			String[] line = file[i];
+//<<<<<<< HEAD
 			int from = Integer.parseInt(line[0]);
 			int to = Integer.parseInt(line[1]);
 			Double speed = Integer.parseInt(line[2]) == 4 ? 5280. : 3080.;
@@ -97,7 +98,7 @@ public class FileIO {
 		}
 		
 		EdgeWeightedDigraph graph = new EdgeWeightedDigraph(numNodes);
-		for(int i = 0; i < numNodes; i++){
+		while(!edges.isEmpty()){
 			DirectedEdge e = edges.pop();
 			graph.addEdge(e,coordBg[e.from()],coordBg[e.to()]);
 		}

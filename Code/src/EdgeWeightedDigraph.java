@@ -46,6 +46,9 @@ public class EdgeWeightedDigraph {
 		}
 		return lowIndex;
 	}
+	public Coordinate coord(int i){return coords[i];}
 	public Iterable<DirectedEdge> adj(int v) { return adj[v]; }
-	
+	public Coordinate[] coords(){
+		return coords;
+	}
 }
