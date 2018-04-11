@@ -24,7 +24,7 @@ public class Parker{
 		
 		Double[] dist = new Double[p.length];
 		for(int i = 0; i<p.length; i++)
-			dist[i] = p[i].getDist(c);
+			dist[i] = p[i].getDist(cnew);
 		
 		QuickSort.sort(dist,p, 0, p.length);
 		
