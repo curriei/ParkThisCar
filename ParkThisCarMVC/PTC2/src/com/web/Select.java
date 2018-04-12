@@ -15,10 +15,19 @@ import com.model.Parker;
 
 /**
  * Servlet implementation class Select
+ * 
+ * @return the result i.e. parking spot information on the online servelet
  */
 @WebServlet("/Select")
 public class Select extends HttpServlet implements Servlet {
 	
+	
+	/**
+	 * doPost does actual implementation of servelet using exception handlers.
+	 * 
+	 * @param HttpServletRequest stands for user request.
+	 * @param HttpServletResponse codes for expected response.
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
