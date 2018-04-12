@@ -13,7 +13,7 @@ public class Parker{
 		
 	}
 	
-	public ArrayList<String> mainFunc2(String adr, String day) throws Exception{
+	public static ArrayList<String> mainFunc2(String adr, String day) throws Exception{
 		String lat = GoogleAPI.LatAPI(adr);
 		String lng = GoogleAPI.LngAPI(adr);
 		
@@ -24,7 +24,7 @@ public class Parker{
 		
 		Double[] dist = new Double[p.length];
 		for(int i = 0; i<p.length; i++)
-			dist[i] = p[i].getDist(cnew);
+			dist[i] = p[i].getDist(c);
 		
 		QuickSort.sort(dist,p, 0, p.length);
 		
