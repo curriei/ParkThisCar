@@ -13,7 +13,7 @@ public class Parker{
 		
 	}
 	
-	public static ArrayList<String> mainFunc2(String adr, String day) throws Exception{
+	public ArrayList<String> mainFunc2(String adr, String day) throws Exception{
 		String lat = GoogleAPI.LatAPI(adr);
 		String lng = GoogleAPI.LngAPI(adr);
 		
